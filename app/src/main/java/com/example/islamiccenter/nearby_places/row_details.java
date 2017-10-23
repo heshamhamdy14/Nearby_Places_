@@ -29,8 +29,8 @@ public class row_details extends AppCompatActivity {
 
         Picasso.with(getBaseContext()).load("http://image.tmdb.org/t/p/w500/"+placeModel.getPhotos()).into(imageView);
         textView.setText(placeModel.getName());
-        textView2.setText((CharSequence) placeModel.getTypes());
-        textView3.setText((CharSequence) placeModel.getOpeningHours());
+        textView2.setText( placeModel.getTypes().get(0));
+       // textView3.setText((CharSequence) placeModel.getOpeningHours().);
         ratingBar.getRating();
 
     }

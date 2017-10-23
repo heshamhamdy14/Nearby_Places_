@@ -46,14 +46,18 @@ public class PlaceSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_place_search);
 
+        lstplaces=(ListView)findViewById(R.id.list_places);
+        search=(ImageButton)findViewById(R.id.imageButtonsaerch);
         txtsearch =(EditText)findViewById(R.id.txtsearch);
+
+
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                txtsearch.getText().toString();
 
+                String url ="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&key=AIzaSyAd7Ga7dxZ2It9hNnFzjxNoa0J8Wnk_Vps&type="+txtsearch.getText().toString();
+                Log.d("zamel", "onClick: "+url);
                 GetPlaces getPlaces =new GetPlaces();
-                String url ="https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type="+txtsearch+"&keyword=cruise&key=AIzaSyAd7Ga7dxZ2It9hNnFzjxNoa0J8Wnk_Vps";
                 getPlaces.execute(url);
             }
         });
@@ -75,6 +79,7 @@ public class PlaceSearch extends AppCompatActivity {
                     .build();
 
             Response response = client.newCall(request).execute();
+
             return response.body().string();
         }
 
@@ -84,7 +89,9 @@ public class PlaceSearch extends AppCompatActivity {
                 Log.d("hesham", s);
                 JSONObject jsonObject = new JSONObject(s);
                 JSONArray jsonArray = jsonObject.getJSONArray("results");
+
                 placemodels = gson.fromJson(jsonArray.toString(), PlaceModel[].class);
+                Log.d("zamel", "doInBackground: "+placemodels.length);
                 return placemodels;
 
             }
@@ -100,8 +107,8 @@ public class PlaceSearch extends AppCompatActivity {
         protected void onPostExecute(PlaceModel[]placesModels) {
             progressDialog.dismiss();
             if(placesModels!=null) {
-                placesadapter = new PlaceAdapter(PlaceSearch.this, placemodels);
-                lstplaces.setAdapter(placesadapter);
+                PlaceAdapter    placesadapter2 = new PlaceAdapter(PlaceSearch.this, placemodels);
+                lstplaces.setAdapter(placesadapter2);
                 lstplaces.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {

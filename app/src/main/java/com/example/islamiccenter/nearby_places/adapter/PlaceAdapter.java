@@ -39,9 +39,9 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         TextView title =(TextView)convertView.findViewById(R.id.textView2title);
         title.setText(placesModel.getName());
         TextView openhourse=(TextView)convertView.findViewById(R.id.textView5openhourse);
-        openhourse.setText((CharSequence) placesModel.getOpeningHours());
+     //   openhourse.setText( placesModel.getOpeningHours().getOpenNow()+"");
         TextView category =(TextView)convertView.findViewById(R.id.textView6category);
-        category.setText((CharSequence) placesModel.getTypes());
+        category.setText( placesModel.getTypes().get(0)+"");
         RatingBar ratingBar =(RatingBar)convertView.findViewById(R.id.ratingBar);
         ratingBar.getRating();
 

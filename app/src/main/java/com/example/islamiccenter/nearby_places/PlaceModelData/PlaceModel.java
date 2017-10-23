@@ -1,15 +1,13 @@
+
 package com.example.islamiccenter.nearby_places.PlaceModelData;
 
+import java.io.Serializable;
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
-
-/**
- * Created by islamic center on 22/10/2017.
- */
-
-public class PlaceModel {
+public class PlaceModel implements Serializable
+{
 
     @SerializedName("geometry")
     @Expose
@@ -28,7 +26,7 @@ public class PlaceModel {
     private OpeningHours openingHours;
     @SerializedName("photos")
     @Expose
-    private List<Object> photos = null;
+    private List<Photo> photos = null;
     @SerializedName("place_id")
     @Expose
     private String placeId;
@@ -43,10 +41,11 @@ public class PlaceModel {
     private String scope;
     @SerializedName("types")
     @Expose
-    private List<Object> types = null;
+    private List<String> types = null;
     @SerializedName("vicinity")
     @Expose
     private String vicinity;
+    private final static long serialVersionUID = -127718209761748966L;
 
     public Geometry getGeometry() {
         return geometry;
@@ -88,11 +87,11 @@ public class PlaceModel {
         this.openingHours = openingHours;
     }
 
-    public List<Object> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(List<Object> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 
@@ -128,11 +127,11 @@ public class PlaceModel {
         this.scope = scope;
     }
 
-    public List<Object> getTypes() {
+    public List<String> getTypes() {
         return types;
     }
 
-    public void setTypes(List<Object> types) {
+    public void setTypes(List<String> types) {
         this.types = types;
     }
 
@@ -142,12 +141,6 @@ public class PlaceModel {
 
     public void setVicinity(String vicinity) {
         this.vicinity = vicinity;
-    }
-
-    private class Geometry {
-    }
-
-    private class OpeningHours {
     }
 
 }

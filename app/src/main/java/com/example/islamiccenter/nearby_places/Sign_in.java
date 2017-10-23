@@ -21,6 +21,8 @@ public class Sign_in extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         signup =(TextView)findViewById(R.id.textView2signup);
+        user=(EditText)findViewById(R.id.editTextUsername);
+        pass=(EditText)findViewById(R.id.editText2Password);
 
     }
     public void btn_signin(View view) {
@@ -28,14 +30,13 @@ public class Sign_in extends AppCompatActivity {
 
         if (result) {
             Toast.makeText(getApplicationContext(), "Login successful, redirecting to Home Page.", Toast.LENGTH_LONG).show();
-
+            Intent intent=new Intent(Sign_in.this,PlaceSearch.class);
+            startActivity(intent);
         }
         else {
             Toast.makeText(getApplicationContext(), "Invalid credentials, please try again.", Toast.LENGTH_LONG).show();
 
         }
-        Intent intent=new Intent(Sign_in.this,PlaceSearch.class);
-        startActivity(intent);
 
     }
 
