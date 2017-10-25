@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.islamiccenter.nearby_places.PlaceModelData.Location;
 import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
 import com.example.islamiccenter.nearby_places.R;
 import com.squareup.picasso.Picasso;
@@ -33,27 +34,28 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         convertView= LayoutInflater.from(getContext()).inflate(R.layout.place_row,parent,false);
 
         }
-        PlaceModel placesModel=getItem(position);
+        final PlaceModel placesModel=getItem(position);
         ImageView photo =(ImageView)convertView.findViewById(R.id.imageView4photo);
         Picasso.with(getContext()).load("http://image.tmdb.org/t/p/w500/"+placesModel.getPhotos()).into(photo);
         TextView title =(TextView)convertView.findViewById(R.id.textView2title);
         title.setText(placesModel.getName());
         TextView openhourse=(TextView)convertView.findViewById(R.id.textView5openhourse);
-     //   openhourse.setText( placesModel.getOpeningHours().getOpenNow()+"");
+        openhourse.setText( placesModel.getOpeningHours().getOpenNow().toString());
         TextView category =(TextView)convertView.findViewById(R.id.textView6category);
         category.setText( placesModel.getTypes().get(0)+"");
         RatingBar ratingBar =(RatingBar)convertView.findViewById(R.id.ratingBar);
         ratingBar.getRating();
 
+       final Location loc = new Location();
+
        ImageView location =(ImageView)convertView.findViewById(R.id.imageView2location) ;
-    location.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-
-
-        }
-    });
+       location.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+               loc.getLat();
+               loc.getLng();
+           }
+       });
 
         return convertView;
         }

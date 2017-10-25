@@ -9,6 +9,8 @@ import com.google.gson.annotations.SerializedName;
 public class Photo implements Serializable
 {
 
+
+
     @SerializedName("height")
     @Expose
     private Integer height;
