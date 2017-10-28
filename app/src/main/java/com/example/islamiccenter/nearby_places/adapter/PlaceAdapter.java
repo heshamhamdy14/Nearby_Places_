@@ -1,6 +1,7 @@
 package com.example.islamiccenter.nearby_places.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -11,8 +12,10 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.islamiccenter.nearby_places.MapsActivity;
 import com.example.islamiccenter.nearby_places.PlaceModelData.Location;
 import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
+import com.example.islamiccenter.nearby_places.PlaceSearch;
 import com.example.islamiccenter.nearby_places.R;
 import com.squareup.picasso.Picasso;
 
@@ -46,14 +49,13 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         RatingBar ratingBar =(RatingBar)convertView.findViewById(R.id.ratingBar);
         ratingBar.getRating();
 
-       final Location loc = new Location();
-
        ImageView location =(ImageView)convertView.findViewById(R.id.imageView2location) ;
        location.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               loc.getLat();
-               loc.getLng();
+               Intent intent=new Intent(getContext(),MapsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               getContext().startActivity(intent);
+
            }
        });
 

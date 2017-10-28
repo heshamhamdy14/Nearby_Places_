@@ -1,19 +1,28 @@
 package com.example.islamiccenter.nearby_places;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
+import android.icu.text.SimpleDateFormat;
+import android.icu.util.Calendar;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Locale;
+
+@RequiresApi(api = Build.VERSION_CODES.N)
 public class Sign_up extends AppCompatActivity {
 
     DatabaseHandler db = new DatabaseHandler(this);
@@ -24,10 +33,14 @@ public class Sign_up extends AppCompatActivity {
     Button signup;
     TextView signin;
     ImageButton imageButton;
+    TextView date;
     private static final int SELECT_PICTURE = 1;
+     Calendar myCalendar ;
+
 
     private String selectedImagePath;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +53,40 @@ public class Sign_up extends AppCompatActivity {
         pass=(EditText)findViewById(R.id.password );
         signup=(Button)findViewById(R.id.btn_signup);
         signin=(TextView)findViewById(R.id.textView2signin);
+
+
+/* find textview*/
+        date = (TextView) findViewById(R.id.textViewbirthdate);
+/* and copy the fallowing code*/
+        final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                // TODO Auto-generated method stub
+                myCalendar = Calendar.getInstance();
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                String myFormat = "dd/MMM/yyyy"; //In which you need put here
+                SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.UK);
+
+                date.setText(sdf.format(myCalendar.getTime()));
+
+            }
+
+        };
+
+
+        date.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(Sign_up.this, datePickerListener, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+
+            }
+        });
     }
 
     public void signupclick(View view) {

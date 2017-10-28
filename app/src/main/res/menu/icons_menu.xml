@@ -12,6 +12,7 @@
         android:id="@+id/love"
         android:icon="@drawable/ic_favorite_border_black_24dp"
         android:title="love"
+        
         app:showAsAction="always"></item>
 
 </menu>

@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context="com.example.islamiccenter.nearby_places.row_details">
 
+    <include
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        layout="@layout/toolbarback"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="511dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        android:id="@+id/include" />
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="378dp"
@@ -17,7 +28,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.131" />
 
     <TextView
         android:id="@+id/textView2"
@@ -92,11 +103,11 @@
         android:layout_marginTop="8dp"
         android:text="category"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
+        app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/textView5"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.539" />
+        app:layout_constraintVertical_bias="0.575" />
 
     <TextView
         android:id="@+id/textView8"
@@ -112,7 +123,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/textView6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.668" />
+        app:layout_constraintVertical_bias="0.691" />
 
     <TextView
         android:id="@+id/textView9"
@@ -128,22 +139,23 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/ratingBar2"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.794" />
+        app:layout_constraintVertical_bias="0.799" />
 
-    <ImageButton
-        android:id="@+id/imageButtonfav"
-        android:layout_width="65dp"
-        android:layout_height="51dp"
+    <ImageView
+        android:id="@+id/imageViewlove"
+        android:layout_width="47dp"
+        android:layout_height="44dp"
         android:layout_marginBottom="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.973"
+        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.416"
+        app:layout_constraintVertical_bias="0.475"
         app:srcCompat="@drawable/ic_favorite_border_black_24dpred" />
+
 
 </android.support.constraint.ConstraintLayout>
