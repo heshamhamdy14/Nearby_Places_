@@ -19,6 +19,8 @@ import com.example.islamiccenter.nearby_places.PlaceSearch;
 import com.example.islamiccenter.nearby_places.R;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
+
 /**
  * Created by islamic center on 22/10/2017.
  */
@@ -39,11 +41,13 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         }
         final PlaceModel placesModel=getItem(position);
         ImageView photo =(ImageView)convertView.findViewById(R.id.imageView4photo);
-        Picasso.with(getContext()).load("http://image.tmdb.org/t/p/w500/"+placesModel.getPhotos()).into(photo);
+        Picasso.with(getContext()).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&" +
+                "photoreference=" +placesModel.getPhotos().get(0).getPhotoReference()+
+                "&key=AIzaSyAd7Ga7dxZ2It9hNnFzjxNoa0J8Wnk_Vps").into(photo);
         TextView title =(TextView)convertView.findViewById(R.id.textView2title);
         title.setText(placesModel.getName());
         TextView openhourse=(TextView)convertView.findViewById(R.id.textView5openhourse);
-        openhourse.setText( placesModel.getOpeningHours().getOpenNow().toString());
+    //    openhourse.setText( placesModel.getOpeningHours().getOpenNow().toString());
         TextView category =(TextView)convertView.findViewById(R.id.textView6category);
         category.setText( placesModel.getTypes().get(0)+"");
         RatingBar ratingBar =(RatingBar)convertView.findViewById(R.id.ratingBar);
@@ -54,6 +58,7 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
            @Override
            public void onClick(View v) {
                Intent intent=new Intent(getContext(),MapsActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+               intent.putExtra("placemodels", placesModel);
                getContext().startActivity(intent);
 
            }

@@ -48,7 +48,7 @@ public class favourite extends AppCompatActivity {
         else{
 
             while (data.moveToNext()){
-                thelist.add(data.getString(1));
+                thelist.add(data.getString(2));
                 ListAdapter listAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,thelist);
                 lst_fav_places.setAdapter(listAdapter);
             }

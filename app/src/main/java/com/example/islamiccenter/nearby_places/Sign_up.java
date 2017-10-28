@@ -4,7 +4,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
@@ -20,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 @RequiresApi(api = Build.VERSION_CODES.N)
@@ -55,9 +55,9 @@ public class Sign_up extends AppCompatActivity {
         signin=(TextView)findViewById(R.id.textView2signin);
 
 
-/* find textview*/
+
         date = (TextView) findViewById(R.id.textViewbirthdate);
-/* and copy the fallowing code*/
+
         final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override

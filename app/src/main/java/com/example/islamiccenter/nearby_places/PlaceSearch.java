@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -46,7 +47,7 @@ public class PlaceSearch extends AppCompatActivity {
     Gson gson =new Gson();
 Toolbar toolbar;
     DatabaseHandler db=new DatabaseHandler(this);
-
+boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +90,25 @@ Toolbar toolbar;
             }
         });
     }
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        }
 
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
     class GetPlaces extends AsyncTask<String , Void ,PlaceModel[] > {
 
         protected void onPreExecute() {
@@ -146,21 +165,21 @@ Toolbar toolbar;
                     }
                 });
 
-//                ArrayList<String> thelist=new ArrayList<>();
-//                Cursor data=db.getlistcontents();
-//
-//                if (data.getCount()==0)
-//                {
-//                    Toast.makeText(PlaceSearch.this, "data base is empty", Toast.LENGTH_SHORT).show();
-//                }
-//                else{
-//
-//                    while (data.moveToNext()){
-//                        thelist.add(data.getString(1));
-//                        ListAdapter listAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,thelist);
-//                        lst_fav_places.setAdapter(listAdapter);
-//                    }
-//                }
+                ArrayList<String> thelist=new ArrayList<>();
+                Cursor data=db.getlistcontents();
+
+                if (data.getCount()==0)
+                {
+                    Toast.makeText(PlaceSearch.this, "data base is empty", Toast.LENGTH_SHORT).show();
+                }
+                else{
+
+                    while (data.moveToNext()){
+                        thelist.add(data.getString(1));
+                        ListAdapter listAdapter=new ArrayAdapter(PlaceSearch.this,android.R.layout.simple_list_item_1,thelist);
+                        lst_fav_places.setAdapter(listAdapter);
+                    }
+                }
             }
         }
     }

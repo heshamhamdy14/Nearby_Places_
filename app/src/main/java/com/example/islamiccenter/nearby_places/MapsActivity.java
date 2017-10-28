@@ -1,7 +1,9 @@
 package com.example.islamiccenter.nearby_places;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.islamiccenter.nearby_places.PlaceModelData.Location;
 import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
@@ -14,9 +16,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private static final String TAG =MapsActivity.class.getName() ;
     private GoogleMap mMap;
     PlaceModel placeModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +27,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-         placeModel=new PlaceModel();
+        Intent intent=getIntent();
+         placeModel=(PlaceModel) getIntent().getSerializableExtra("placemodels");
+
     }
 
 

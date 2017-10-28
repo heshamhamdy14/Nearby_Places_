@@ -49,7 +49,9 @@ public class row_details extends AppCompatActivity {
         final RatingBar ratingBar=(RatingBar) findViewById(R.id.ratingBar2);
 
 
-        Picasso.with(getBaseContext()).load("http://image.tmdb.org/t/p/w500/"+placeModel.getPhotos()).into(imageView);
+        Picasso.with(getBaseContext()).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&" +
+                "photoreference=" +placeModel.getPhotos().get(0).getPhotoReference()+
+                "&key=AIzaSyAd7Ga7dxZ2It9hNnFzjxNoa0J8Wnk_Vps").into(imageView);
         textView.setText(placeModel.getName());
         textView2.setText( placeModel.getTypes().get(0));
         textView3.setText( placeModel.getOpeningHours().getOpenNow().toString());

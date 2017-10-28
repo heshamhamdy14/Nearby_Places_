@@ -15,7 +15,7 @@ import android.widget.RatingBar;
 
 public class DatabaseHandler extends SQLiteOpenHelper {
 
-    public static final String dbName = "signup_data";
+    public static final String dbName = "Zamel";
 
     public DatabaseHandler(Context context) {
         super(context, dbName, null, 1);
@@ -24,7 +24,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE signs (id INTEGER PRIMARY KEY AUTOINCREMENT , full_name TEXT , email TEXT , password TEXT)");
-        sqLiteDatabase.execSQL("CREATE TABLE favourits (id INTEGER PRIMARY KEY AUTOINCREMENT , image_view blob , name TEXT , category TEXT , opening_hourse TEXT , rate FLOAT)");
+        sqLiteDatabase.execSQL("CREATE TABLE favourits( id INTEGER PRIMARY KEY AUTOINCREMENT , image_view TEXT , name TEXT , category TEXT , opening_hourse TEXT , rate FLOAT)");
 
     }
 
@@ -70,7 +70,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValues.put("image_view", image_view);
         contentValues.put("name",name);
         contentValues.put("category",category);
-        contentValues.put("openinghourse",opening_hourse);
+        contentValues.put("opening_hourse",opening_hourse);
         contentValues.put("rate", rate);
         long result = db.insert("favourits",null,contentValues);
         if (result == -1)
