@@ -27,8 +27,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
         Intent intent=getIntent();
          placeModel=(PlaceModel) getIntent().getSerializableExtra("placemodels");
+        Intent myintent=getIntent();
+        placeModel=(PlaceModel) getIntent().getSerializableExtra("placeModel");
+
 
     }
 
@@ -48,7 +52,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng place = new LatLng(placeModel.getGeometry().getLocation().getLat(), placeModel.getGeometry().getLocation().getLng());
+     //   LatLng place1 = new LatLng(placeModel.getGeometry().getLocation().getLat(), placeModel.getGeometry().getLocation().getLng());
+
         mMap.addMarker(new MarkerOptions().position(place).title("Marker in place choosed"));
+       // mMap.addMarker(new MarkerOptions().position(place1).title("Marker in place choosed"));
+
         mMap.moveCamera(CameraUpdateFactory.newLatLng(place));
+       // mMap.moveCamera(CameraUpdateFactory.newLatLng(place1));
+
     }
 }

@@ -36,6 +36,7 @@ public class Sign_up extends AppCompatActivity {
     TextView date;
     private static final int SELECT_PICTURE = 1;
      Calendar myCalendar ;
+    DatePickerDialog.OnDateSetListener datePickerListener;
 
 
     private String selectedImagePath;
@@ -58,7 +59,7 @@ public class Sign_up extends AppCompatActivity {
 
         date = (TextView) findViewById(R.id.textViewbirthdate);
 
-        final DatePickerDialog.OnDateSetListener datePickerListener = new DatePickerDialog.OnDateSetListener() {
+         datePickerListener = new DatePickerDialog.OnDateSetListener() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {

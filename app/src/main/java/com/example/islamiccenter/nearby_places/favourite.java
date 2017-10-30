@@ -12,6 +12,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
+import com.example.islamiccenter.nearby_places.adapter.PlaceAdapter;
+import com.example.islamiccenter.nearby_places.adapter.favourite_adapter;
+
 import java.util.ArrayList;
 
 public class favourite extends AppCompatActivity {
@@ -19,6 +23,8 @@ public class favourite extends AppCompatActivity {
     Toolbar toolbar;
     ListView lst_fav_places;
     DatabaseHandler db=new DatabaseHandler(this);
+    favourite_adapter adapter;
+    PlaceModel[] placeModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +43,15 @@ public class favourite extends AppCompatActivity {
 
         });
 
+        placeModel=new PlaceModel[1];
+
         lst_fav_places=(ListView)findViewById(R.id.listviewfav);
-        ArrayList<String> thelist=new ArrayList<>();
-        Cursor data=db.getlistcontents();
+            adapter= new favourite_adapter(favourite.this,placeModel);
+            lst_fav_places.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
-        if (data.getCount()==0)
-        {
-            Toast.makeText(favourite.this, "data base is empty", Toast.LENGTH_SHORT).show();
-        }
-        else{
-
-            while (data.moveToNext()){
-                thelist.add(data.getString(2));
-                ListAdapter listAdapter=new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,thelist);
-                lst_fav_places.setAdapter(listAdapter);
             }
         }
 
-    }
-}
+
+

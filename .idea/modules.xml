@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Nearby_Places.iml" filepath="$PROJECT_DIR$/Nearby_Places.iml" />
       <module fileurl="file://$PROJECT_DIR$/Nearby_Places2.iml" filepath="$PROJECT_DIR$/Nearby_Places2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Nearby_Places_kero.iml" filepath="$PROJECT_DIR$/Nearby_Places_kero.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

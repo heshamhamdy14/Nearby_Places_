@@ -3,6 +3,7 @@ package com.example.islamiccenter.nearby_places;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 
 public class row_details extends AppCompatActivity {
  DatabaseHandler db;
@@ -24,6 +26,15 @@ public class row_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_row_details);
+
+
+
+//        Intent intent = getIntent();
+//        final String s = intent.getStringExtra("placemodels");
+
+
+
+
 
         db=new DatabaseHandler(this);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
@@ -38,7 +49,7 @@ public class row_details extends AppCompatActivity {
         });
 
         Intent intent=getIntent();
-        PlaceModel placeModel=(PlaceModel) getIntent().getSerializableExtra("placemodels");
+        final PlaceModel placeModel=(PlaceModel) getIntent().getSerializableExtra("placemodels");
 
         final ImageView imageView=(ImageView) findViewById(R.id.imageView3);
         final byte[]newimg=imageViewtobyte(imageView);
@@ -62,13 +73,24 @@ public class row_details extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                boolean result =db.savedata(newimg,textView.getText().toString(),textView2.getText().toString(),textView3.getText().toString(),ratingBar.getRating());
+                boolean result =db.savedata(newimg,placeModel.getName(),textView2.getText().toString(),textView3.getText().toString(),ratingBar.getRating());
                 if (result) {
                     Toast.makeText(row_details.this, "data inserted", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(row_details.this, "no data inserted", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+
+        FloatingActionButton location =(FloatingActionButton)findViewById(R.id.location);
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myintent=new Intent(row_details.this,MapsActivity.class);
+               myintent.putExtra("placeModel", placeModel);
+                startActivity(myintent);
+
             }
         });
 
@@ -82,3 +104,4 @@ public class row_details extends AppCompatActivity {
         return bytearray;
     }
 }
+

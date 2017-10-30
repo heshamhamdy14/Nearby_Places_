@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.islamiccenter.nearby_places.PlaceModelData.PlaceModel;
 import com.example.islamiccenter.nearby_places.adapter.PlaceAdapter;
+import com.example.islamiccenter.nearby_places.adapter.favourite_adapter;
 import com.google.gson.Gson;
 
 import org.json.JSONArray;
@@ -43,6 +44,7 @@ public class PlaceSearch extends AppCompatActivity {
     ListView lst_fav_places;
     PlaceModel[] placemodels;
     PlaceAdapter placesadapter;
+    favourite_adapter adapter;
     ProgressDialog progressDialog;
     Gson gson =new Gson();
 Toolbar toolbar;
@@ -165,22 +167,11 @@ boolean doubleBackToExitPressedOnce = false;
                     }
                 });
 
-                ArrayList<String> thelist=new ArrayList<>();
-                Cursor data=db.getlistcontents();
-
-                if (data.getCount()==0)
-                {
-                    Toast.makeText(PlaceSearch.this, "data base is empty", Toast.LENGTH_SHORT).show();
-                }
-                else{
-
-                    while (data.moveToNext()){
-                        thelist.add(data.getString(1));
-                        ListAdapter listAdapter=new ArrayAdapter(PlaceSearch.this,android.R.layout.simple_list_item_1,thelist);
-                        lst_fav_places.setAdapter(listAdapter);
-                    }
-                }
             }
+          adapter =new favourite_adapter(PlaceSearch.this,placemodels);
+            lst_fav_places.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+
         }
     }
 }

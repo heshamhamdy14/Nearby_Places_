@@ -24,7 +24,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL("CREATE TABLE signs (id INTEGER PRIMARY KEY AUTOINCREMENT , full_name TEXT , email TEXT , password TEXT)");
-        sqLiteDatabase.execSQL("CREATE TABLE favourits( id INTEGER PRIMARY KEY AUTOINCREMENT , image_view TEXT , name TEXT , category TEXT , opening_hourse TEXT , rate FLOAT)");
+        sqLiteDatabase.execSQL("CREATE TABLE favourits( id INTEGER PRIMARY KEY AUTOINCREMENT , image_view BLOB , name TEXT , category TEXT , opening_hourse TEXT , rate FLOAT)");
 
     }
 

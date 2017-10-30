@@ -44,12 +44,16 @@ public View getView(int position, @Nullable View convertView, @NonNull ViewGroup
         Picasso.with(getContext()).load("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&" +
                 "photoreference=" +placesModel.getPhotos().get(0).getPhotoReference()+
                 "&key=AIzaSyAd7Ga7dxZ2It9hNnFzjxNoa0J8Wnk_Vps").into(photo);
+
         TextView title =(TextView)convertView.findViewById(R.id.textView2title);
         title.setText(placesModel.getName());
+
         TextView openhourse=(TextView)convertView.findViewById(R.id.textView5openhourse);
-    //    openhourse.setText( placesModel.getOpeningHours().getOpenNow().toString());
+       openhourse.setText( placesModel.getOpeningHours().getOpenNow().toString());
+
         TextView category =(TextView)convertView.findViewById(R.id.textView6category);
         category.setText( placesModel.getTypes().get(0)+"");
+
         RatingBar ratingBar =(RatingBar)convertView.findViewById(R.id.ratingBar);
         ratingBar.getRating();
 
