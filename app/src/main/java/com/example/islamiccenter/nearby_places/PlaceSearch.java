@@ -178,26 +178,6 @@ boolean doubleBackToExitPressedOnce = false;
 
 
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater inflater = getMenuInflater();
-//        inflater.inflate(R.menu.icons_menu, menu);
-//        return true;
-//    }
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle item selection
-//        switch (item.getItemId()) {
-//            case R.id.logout:
-//                Intent intent=new Intent(PlaceSearch.this,Sign_in.class);
-//                startActivity(intent);
-//                return true;
-//            case R.id.love:
-//
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
 
 
 
